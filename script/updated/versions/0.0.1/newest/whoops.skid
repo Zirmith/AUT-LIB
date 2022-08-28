@@ -124,7 +124,7 @@ end)
 
 local reload = versionsec:addButton('Reload Ui', function()
 task.wait()
-auth:Notify('Getting Version' ,'v' ..wantedversion)
+auth:Notify('Loading..' ,'v' ..wantedversion)
 task.wait(.3)
     utility.reload()
 end)
