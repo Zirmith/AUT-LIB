@@ -1,0 +1,219 @@
+warn('Getting Ready To Load!')
+repeat task.wait() until game:isLoaded()
+
+getgenv().version = "0.0.2"
+
+local util = loadstring(game:HttpGet("https://raw.githubusercontent.com/Zirmith/Util-Tools/main/xyz.lua"))()
+local ItemSpawns = game.Workspace.ItemSpawns
+
+local AstralChests = ItemSpawns.AstralChests
+local Chests = ItemSpawns.Chests
+local DeltaCults = ItemSpawns['DELTA Cults']
+local EventItems = ItemSpawns.EventItems
+local Him = ItemSpawns.Him
+local Meteors = ItemSpawns.Meteors
+local Poster = ItemSpawns.Poster
+local SandDeb = ItemSpawns['Sand Debris']
+local Shards = ItemSpawns.Shards
+local StandardItems = ItemSpawns.StandardItems
+
+Workspace = game.Workspace
+local PlayerService = game:GetService'Players'
+local Player = game.Players.LocalPlayer;
+Hum = Player.Character.Humanoid
+local HumanoidRootPart = Player.Character.HumanoidRootPart;
+local teleport = game:GetService'TeleportService';
+local Mouse = Player:GetMouse();
+local GetName = util.getPlaceName();
+local standardNcpFolder = Workspace:WaitForChild'NPCS'
+
+
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Zirmith/Venyx-UI-Library/main/source.lua"))()
+
+local auth = library.new("Auth-Ware | " ..GetName, 5013109572)
+
+
+
+local themes = {
+	Background = Color3.fromRGB(135,136,138),
+	Glow = Color3.fromRGB(66, 233, 245),
+	Accent = Color3.fromRGB(19,17,17),
+	LightContrast = Color3.fromRGB(167,167,167),
+	DarkContrast = Color3.fromRGB(25,25,25),  
+	TextColor = Color3.fromRGB(116,116,116)
+}
+
+selectedmethod = "";
+version = getgenv().version;
+wantedversion = getgenv().version;
+
+local utility = {}
+
+_G.settings = {
+    file = "authconfig.txt"
+}
+
+uti.configfile = ""
+
+local things = {
+    "Astral Chests",
+    "Chests",
+    "SandDebris",
+    "Meteors",
+    "Itmes",
+    "Shards"
+}
+
+
+utility.farm = function(thing)
+    if thing == "Astral Chests" then
+
+    else
+
+        if thing == "Chests" then
+
+        else
+            if thing == "SandDebris" then
+                
+            else
+                if thing == "Items" then
+
+                else
+                    if thing == "Shards" then
+
+                    else
+                        if thing == "Meteors" then
+
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+
+utility.reload = function()
+    task.wait()
+    game.CoreGui["Auth-Ware | " ..GetName]:Destroy()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Zirmith/AUT-LIB/main/script/updated/versions/"..wantedversion.."/newest/whoops.skid"))()
+end
+
+_G.playeresp = false
+_G.farmtpmethod = "";
+_G.isfarming = false;
+_G.tweenspeed = .5
+_G.farmingFor = ""
+
+spawn(function()
+    while task.wait(.1) do
+         if _G.isfarming then
+            utility.farm(_G.farmingFor)
+         end
+    end
+ end)
+
+
+local page = auth:addPage("Home", 5012544693)
+local credits = page:addSection('Credits')
+local owner = credits:addButton('Made By : Not_Auth')
+local uicreds = credits:addButton('Ui Design: Venyx')
+local scripting = credits:addButton('Scripting By: Auth-Ware Team')
+local versionsec = page:addSection('Version')
+local vb = versionsec:addButton('Using Version: v'..version)
+
+local versionpicker = versionsec:addDropdown('Versions', {"0.0.1", "0.0.2"}, function(text)
+wantedversion = text
+end)
+
+local reload = versionsec:addButton('Reload Ui', function()
+task.wait()
+auth:Notify('Loading..' ,'v' ..wantedversion)
+task.wait(.3)
+    utility.reload()
+end)
+
+local rejoin = versionsec:addButton('Rejoin', function()
+    util.rejoinGame()
+end)
+
+local serverhop = versionsec:addButton('ServerHop', function()
+    util.serverHop()
+end)
+
+
+local quit = versionsec:addButton('Quit', function()
+    game.CoreGui["Auth-Ware | " ..GetName]:Destroy()
+end)
+
+
+local Autofarm = auth:addPage('Farming',5012544693)
+local farm = Autofarm:addSection('Farm Settings')
+
+local farm_method = farm:addDropdown('Farm Method', {"Tween", "Warp", "Bounce", "Standard"}, function(text)
+    _G.farmtpmethod = text
+end)
+
+local farming_what = farm:addDropdown('What To Farm', things , function(text)
+    _G.farmingFor = text
+end)
+
+local farm_speed = farm:addSlider("Farming Speed", 0, -100, 100, function(value)
+	_G.tweenspeed = value
+end)
+
+
+
+local theme = auth:addPage("Ui", 5012544693)
+
+local keybind = theme:addSection('Keybind')
+keybind:addKeybind("Keybind / Toggle Key", Enum.KeyCode.RightAlt, function(value)
+	auth:toggle()
+end, function()
+	auth:Notify("Changed", "Keybind")
+end)
+
+local colors = theme:addSection("Colors")
+
+for theme, color in pairs(themes) do 
+	colors:addColorPicker(theme, color, function(color3)
+		auth:setTheme(theme, color3)
+	end)
+end
+
+local saves = theme:addSection('Ui Saves / Load - WIP -- Not Done')
+local config = saves:addTextbox("FileName", "authconfig.txt", function(value, focusLost)
+	if focusLost then
+		uti.configfile = value
+	end
+end)
+
+local save = saves:addButton('Save Config', function()
+   local json;
+   local https = game:GetService'HttpService'
+   if(writefile) then
+      _G.settings.file = uti.configfile
+      json = https:JSONEncode(_G.settings)
+      writefile(_G.settings.file,json, null, 2)
+      auth:Notify('Saved', uti.configfile)
+      else
+      auth:Notify('Error','[writefile]')
+      end   
+end)
+
+local load = saves:addButton('Load Config', function() -- Wip, why lol? working on new save manager
+    local json;
+    local https = game:GetService'HttpService'
+    if(readfile) then
+        _G.settings.file = uti.configfile
+        json = https:JSONDecode(readfile(_G.settings.file, null, 2))
+        auth:setTheme(json.theme, json.color)
+        auth:Notify('Loaded', uti.configfile)
+        else
+        auth:Notify('Error','[readfile]')
+        end
+end)
+
+
+-- load
+auth:SelectPage(auth.pages[1], true)
