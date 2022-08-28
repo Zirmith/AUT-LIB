@@ -88,7 +88,7 @@ end
 utility.reload = function()
     task.wait()
     game.CoreGui["Auth-Ware | " ..GetName]:Destroy()
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/AuthZero/Project-M/main/Auth/Scripting/Beta/Versions/"..wantedversion.."/Source/script.auth"))()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Zirmith/AUT-LIB/main/script/updated/versions/"..wantedversion.."/newest/whoops.skid"))()
 end
 
 _G.playeresp = false
