@@ -1,4 +1,4 @@
-warn('Getiting Ready To Load!')
+warn('Getting Ready To Load!')
 repeat task.wait() until game:isLoaded()
 
 getgenv().version = "0.0.1"
@@ -124,6 +124,8 @@ end)
 
 local reload = versionsec:addButton('Reload Ui', function()
 task.wait()
+auth:Notify('Getting Version' ,'v' ..wantedversion)
+task.wait(.3)
     utility.reload()
 end)
 
