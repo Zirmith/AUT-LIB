@@ -118,7 +118,7 @@ local scripting = credits:addButton('Scripting By: Auth-Ware Team')
 local versionsec = page:addSection('Version')
 local vb = versionsec:addButton('Using Version: v'..version)
 
-local versionpicker = versionsec:addDropdown('Versions', {"0.0.1"}, function(text)
+local versionpicker = versionsec:addDropdown('Versions', {"0.0.1","0.0.2"}, function(text)
 wantedversion = text
 end)
 
