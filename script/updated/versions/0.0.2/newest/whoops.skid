@@ -53,6 +53,7 @@ _G.settings = {
     file = "authconfig.txt"
 }
 
+local uti = {}
 uti.configfile = ""
 
 local things = {
